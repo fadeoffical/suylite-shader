@@ -49,8 +49,8 @@ float snow(vec2 uv, float scale, float density, float intensity) {
     vec2 uv_fract = fract(uv);
 
     mat2 scattering_matrix = mat2(7, 3, 6, 8);
-    vec2 p_DEOBF = 0.5 + 0.35 * sin(360.0 * fract(sin((uv_floor + scale) * scattering_matrix))) - uv_fract;
-    float brightness = min(length(p_DEOBF), 3.0);
+    vec2 scattering = 0.5 + 0.35 * sin(360.0 * fract(sin((uv_floor + scale) * scattering_matrix))) - uv_fract;
+    float brightness = min(length(scattering), 3.0);
     brightness = smoothstep(0.0, brightness, sin(uv_fract.x + uv_fract.y) / 100.0);
 
     return brightness * gradient * intensity;
